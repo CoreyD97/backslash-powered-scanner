@@ -29,14 +29,21 @@ class ConfigMenu implements Runnable, IExtensionStateListener{
     {
         menuButton = new JMenu("Backslash");
         menuButton.addMouseListener(new MouseAdapter() {
+
             @Override
-            public void mousePressed(MouseEvent mouseEvent) {
+            public void mouseReleased(MouseEvent mouseEvent) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run(){
                         Utilities.globalSettings.showSettings();
                     }
                 });
             }
+
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+                mouseReleased(mouseEvent);
+            }
+
         });
 
         JMenuBar burpMenuBar = getBurpFrame().getJMenuBar();
